@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -98,3 +99,14 @@
         </div>
     </body>
 </html>
+-->
+
+@extends('layouts.app')
+
+@section('content')
+    <div class="center jumbotron">
+        <div class="text-center">
+            <h1>Welcome to the Tasklist</h1>
+        </div>
+    </div>
+@endsection
