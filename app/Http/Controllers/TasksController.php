@@ -117,11 +117,18 @@ class TasksController extends Controller
     {
         // idの値でタスクを検索して取得
         $task = Task::findOrFail($id);
-
-        // タスク詳細ビューでそれを表示
-        return view('tasks.show', [
+        
+        // 自分のuser_idなら一覧を表示、そうれなければtopにリダイレクト
+        // Auth::user()->id
+        
+        if (\Auth::user()->id == $task->user_id) {
+            // タスク詳細ビューでそれを表示
+            return view('tasks.show', [
             'task' => $task,
-        ]);
+            ]);
+        }
+
+        return redirect('/');
     }
 
     /**
