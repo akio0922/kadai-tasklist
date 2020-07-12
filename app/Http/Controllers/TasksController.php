@@ -140,6 +140,7 @@ class TasksController extends Controller
     // getでtasks/id/editにアクセスされた場合の「更新画面表示処理」
     public function edit($id)
     {
+        /*
         // idの値でタスクを検索して取得
         $task = Task::findOrFail($id);
 
@@ -147,6 +148,22 @@ class TasksController extends Controller
         return view('tasks.edit', [
             'task' => $task,
         ]);
+        */
+        
+            // 自分のuser_idなら一覧を表示、そうれなければtopにリダイレクト
+        // Auth::user()->id
+        
+        $task = Task::findOrFail($id);
+        
+        if (\Auth::user()->id == $task->user_id) {
+            // タスク詳細ビューでそれを表示
+            return view('tasks.edit', [
+            'task' => $task,
+            ]);
+        }
+
+        return redirect('/');
+        
     }
 
     /**
